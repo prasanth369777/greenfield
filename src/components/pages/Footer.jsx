@@ -1,10 +1,7 @@
 import React from "react";
 import {
   Instagram,
-  Linkedin,
   Facebook,
-  Youtube,
-  X,
   Phone,
   Mail,
   MapPin,
@@ -17,11 +14,8 @@ export default function Footer() {
   const quickLinks = [
     { label: "Projects", href: "https://www.greenfieldhousingindia.com/allprojects" },
     { label: "Community", href: "https://www.greenfieldhousingindia.com/community" },
-    { label: "About us", href: "https://www.greenfieldhousingindia.com/about-us" },
-    { label: "Testimonials", href: "https://www.greenfieldhousingindia.com/testimonials" },
-    { label: "Blogs", href: "https://www.greenfieldhousingindia.com/blog" },
-    { label: "Contact us", href: "https://www.greenfieldhousingindia.com/contact-us" },
-    { label: "Gallery", href: "https://www.greenfieldhousingindia.com/gallery" },
+    { label: "About us", href: "https://www.greenfieldhousingindia.com/aboutus" },
+    { label: "Contact us", href: "https://www.greenfieldhousingindia.com/contactus" },
     { label: "Terms & Conditions", href: "https://www.greenfieldhousingindia.com/terms-conditions" },
     { label: "Privacy Policy", href: "https://www.greenfieldhousingindia.com/privacypolicy" },
     { label: "Disclaimer", href: "https://www.greenfieldhousingindia.com/disclaimer" },
@@ -39,26 +33,13 @@ export default function Footer() {
       label: "Instagram",
       href: "https://www.instagram.com/greenfield_housing/?hl=en",
     },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/greenfield-housing-138887239/",
-    },
+   
     {
       icon: Facebook,
       label: "Facebook",
       href: "https://www.facebook.com/profile.php?id=61564948162389",
     },
-    {
-      icon: Youtube,
-      label: "YouTube",
-      href: "https://www.youtube.com/channel/UCPEmlFKijMzn0SmOe0ktvyw",
-    },
-    {
-      icon: X,
-      label: "X",
-      href: "https://x.com/Housing2Green",
-    },
+ 
   ];
 
   return (
@@ -120,11 +101,11 @@ export default function Footer() {
                   </a>
 
                   <a
-                    href="mailto:info@gfhil.com"
+                    href="mailto:greenfield.developers.cbe@mail.com"
                     className="flex items-center gap-2 font-bold text-white transition-colors hover:text-emerald-300"
                   >
                     <Mail className="h-4 w-4 text-emerald-300" />
-                    info@gfhil.com
+                    greenfield.developers.cbe@mail.com
                   </a>
                 </div>
               </div>

@@ -2,16 +2,15 @@ import { ArrowLeft, ArrowRight, MapPin, ExternalLink } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 
 // =====================================================
-// REAL PROJECT DATA — pulled from greenfieldhousingindia.com
-// (ongoing-projects, completed-project, ready-to-occupy, allprojects)
-// Swap the `img` URLs for locally-hosted copies of these assets
-// when you have them; using the live CDN links here as placeholders.
+// REAL PROJECT DATA — Greenfield Housing India
+// Verified projects from greenfieldhousingindia.com
 // =====================================================
 
 const projects = [
+  // ==================== ONGOING ====================
   {
     name: "Lavender",
-    location: "Kalapatti, Coimbatore",
+    location: "Saravanampatti, Coimbatore",
     status: "Ongoing",
     href: "http://lavender.greenfieldhousingindia.com/",
     img: "https://static.wixstatic.com/media/60b717_005782c45b6c4b59ae38e1242078eb0e~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/lavender_1_5x.jpg",
@@ -25,7 +24,7 @@ const projects = [
   },
   {
     name: "Crystal Gateway",
-    location: "Sulur, Coimbatore",
+    location: "Kalangal Road, Sulur",
     status: "Ongoing",
     href: "https://www.greenfieldhousingindia.com/crystalgateway",
     img: "https://static.wixstatic.com/media/60b717_e3458c6e980748a88ced46d2c367e603~mv2.jpg/v1/fill/w_980,h_549,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Untitled-1-04_edited.jpg",
@@ -37,6 +36,29 @@ const projects = [
     href: "https://www.greenfieldhousingindia.com/diamond-avenue",
     img: "https://static.wixstatic.com/media/60b717_8876632975b4438cb1f3f5c0df7bca6d~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diamond%20avenue_1_5x.jpg",
   },
+  {
+    name: "Fairland",
+    location: "Ponnigoundapudur, Coimbatore",
+    status: "Ongoing",
+    href: "https://www.greenfieldhousingindia.com/fairland",
+    img: "https://static.wixstatic.com/media/60b717_7c54df718952421c9cc582783fe5aabf~mv2.jpg/v1/fill/w_980,h_735,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Emerald--3-.jpg",
+  },
+  {
+    name: "Crown City",
+    location: "Kovilpalayam, Coimbatore",
+    status: "Ongoing",
+    href: "https://www.greenfieldhousingindia.com/crowncity",
+    img: "https://static.wixstatic.com/media/60b717_8876632975b4438cb1f3f5c0df7bca6d~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Diamond%20avenue_1_5x.jpg",
+  },
+  {
+    name: "Silver City",
+    location: "Kariyampalayam, Coimbatore",
+    status: "Ongoing",
+    href: "https://www.greenfieldhousingindia.com/silvercity",
+    img: "https://static.wixstatic.com/media/60b717_005782c45b6c4b59ae38e1242078eb0e~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/lavender_1_5x.jpg",
+  },
+
+  // ==================== COMPLETED ====================
   {
     name: "Maple",
     location: "Kalapatti, Coimbatore",
@@ -66,11 +88,41 @@ const projects = [
     img: "https://static.wixstatic.com/media/60b717_819b9b411b5d45668b6c4c1ab30d8a6a~mv2.jpg/v1/fill/w_980,h_669,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/01%20(1).jpg",
   },
   {
+    name: "Natchatra Homes",
+    location: "Coimbatore",
+    status: "Completed",
+    href: "https://www.greenfieldhousingindia.com/natchatra-homes",
+    img: "https://static.wixstatic.com/media/60b717_621aed18452743cb8f83f6651f33aa7a~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Nandhavanam_1_5x.jpg",
+  },
+  {
+    name: "Pearl Park Avenue",
+    location: "Coimbatore",
+    status: "Completed",
+    href: "https://www.greenfieldhousingindia.com/pearl-park-avenue",
+    img: "https://static.wixstatic.com/media/60b717_f9a74e1c8c5c4731b0a7db4c69e0a342~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Maple_1_5x.jpg",
+  },
+
+  // ==================== READY TO OCCUPY ====================
+  {
     name: "Bougain Villea Apartment",
     location: "Vilankurichi, Coimbatore",
     status: "Ready to Occupy",
     href: "https://www.greenfieldhousingindia.com/bougain-apartment-villas",
     img: "https://static.wixstatic.com/media/60b717_38682915f7de44d6a27f2ae985ec2389~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Bougain%20villea%20Apartment_1_5x.jpg",
+  },
+  {
+    name: "Coral Residency",
+    location: "Vellanaipatti, Coimbatore",
+    status: "Ready to Occupy",
+    href: "https://www.greenfieldhousingindia.com/coral-residency",
+    img: "https://static.wixstatic.com/media/60b717_005782c45b6c4b59ae38e1242078eb0e~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/lavender_1_5x.jpg",
+  },
+  {
+    name: "Platina",
+    location: "Vilankurichi, Coimbatore",
+    status: "Ready to Occupy",
+    href: "https://www.greenfieldhousingindia.com/platina",
+    img: "https://static.wixstatic.com/media/60b717_8a7bc8e08a1b4499b01c0143cd0c7bd9~mv2.jpg/v1/fill/w_980,h_653,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Ruby%20Lands_1_5x.jpg",
   },
 ];
 
@@ -150,38 +202,63 @@ export default function Work() {
         <div className="mx-auto mb-10 max-w-4xl text-center md:mb-16">
           <div className="mb-4 inline-flex items-center justify-center rounded-full border border-emerald-100 bg-white px-4 py-1.5 shadow-sm md:mb-6 md:px-5 md:py-2">
             <span className="font-['Poppins',sans-serif] text-xs font-bold uppercase tracking-[0.2em] text-emerald-700 md:text-sm">
-              Selected Works
+              Our Portfolio
             </span>
           </div>
 
-          <h2 className="font-['Poppins',sans-serif] mx-auto text-4xl font-black leading-[1.1] tracking-tight text-emerald-950 md:text-5xl">
-            Designed Spaces.
+          <h2 className="font-['Poppins',sans-serif] mx-auto text-4xl font-black leading-[1.1] tracking-tight text-emerald-950 md:text-5xl lg:text-6xl">
+            Signature Homes,
             <br />
-            <span className="text-emerald-600">Delivered Well.</span>
+            <span className="text-emerald-600">Delivered with Care.</span>
           </h2>
 
           <p className="font-['Inter',sans-serif] mx-auto mt-4 max-w-2xl text-sm font-medium leading-relaxed text-slate-600 md:mt-6 md:text-lg">
-            A look at our ongoing, completed, and ready-to-occupy communities
-            across Coimbatore — planned with clarity and delivered with care.
+            Explore our ongoing, completed, and ready-to-occupy communities
+            across Coimbatore — 20+ projects delivered to 15,000+ happy
+            families since 2012.
           </p>
         </div>
 
-        {/* Filter Navigation — mirrors the real Projects status filters */}
+        {/* Filter Navigation */}
         <div className="mb-10 flex flex-wrap justify-center gap-2 md:mb-16 md:gap-3">
-          {["All", "Ongoing", "Completed", "Ready to Occupy"].map((status) => (
+          {[
+            { label: "All", count: projects.length },
+            {
+              label: "Ongoing",
+              count: projects.filter((p) => p.status === "Ongoing").length,
+            },
+            {
+              label: "Completed",
+              count: projects.filter((p) => p.status === "Completed").length,
+            },
+            {
+              label: "Ready to Occupy",
+              count: projects.filter((p) => p.status === "Ready to Occupy")
+                .length,
+            },
+          ].map((status) => (
             <button
-              key={status}
+              key={status.label}
               onClick={() => {
-                setActiveStatus(status);
+                setActiveStatus(status.label);
                 setCurrentIndex(0);
               }}
-              className={`font-['Poppins',sans-serif] rounded-full border px-5 py-2 text-[10px] font-bold uppercase tracking-wider transition-all md:px-7 md:py-3 md:text-xs md:tracking-[0.15em] ${
-                activeStatus === status
+              className={`font-['Poppins',sans-serif] inline-flex items-center gap-2 rounded-full border px-5 py-2 text-[10px] font-bold uppercase tracking-wider transition-all md:px-7 md:py-3 md:text-xs md:tracking-[0.15em] ${
+                activeStatus === status.label
                   ? "border-emerald-600 bg-emerald-600 text-white shadow-md shadow-emerald-600/20"
                   : "border-slate-200 bg-white text-slate-600 hover:border-emerald-300 hover:text-emerald-600"
               }`}
             >
-              {status}
+              {status.label}
+              <span
+                className={`rounded-full px-1.5 py-0.5 text-[9px] ${
+                  activeStatus === status.label
+                    ? "bg-white/20 text-white"
+                    : "bg-slate-100 text-slate-500"
+                }`}
+              >
+                {status.count}
+              </span>
             </button>
           ))}
         </div>
@@ -200,6 +277,9 @@ export default function Work() {
               <h3 className="font-['Poppins',sans-serif] mt-1 text-2xl font-bold leading-tight text-emerald-950 md:mt-2 md:text-4xl lg:text-5xl">
                 Recent project work
               </h3>
+              <p className="font-['Inter',sans-serif] mt-2 text-xs font-medium text-slate-500 md:text-sm">
+                Showing {currentIndex + 1} of {filteredProjects.length} projects
+              </p>
             </div>
 
             <div className="hidden items-center gap-2 sm:flex md:gap-3">
@@ -221,10 +301,7 @@ export default function Work() {
             </div>
           </div>
 
-          {/* Main Gallery Display — coverflow: cards arranged in a
-              rotated arc around the Y axis rather than a flat
-              side-by-side slide, so depth comes from real 3D rotation
-              instead of just opacity/scale. */}
+          {/* Main Gallery Display */}
           <div
             className="relative flex min-h-[460px] w-full items-center justify-center overflow-hidden py-4 sm:min-h-[500px] md:min-h-[600px] md:py-6"
             style={{ transformStyle: "preserve-3d" }}
@@ -262,7 +339,7 @@ export default function Work() {
                   <div className="relative h-[48%] overflow-hidden rounded-xl border border-slate-100 md:rounded-2xl">
                     <img
                       src={project.img}
-                      alt={`${project.name}, ${project.location}`}
+                      alt={`${project.name} – Greenfield Housing India project in ${project.location}`}
                       loading="lazy"
                       decoding="async"
                       className="h-full w-full object-cover"
@@ -292,7 +369,8 @@ export default function Work() {
                       </h3>
 
                       <p className="font-['Inter',sans-serif] mt-2 text-xs font-medium leading-relaxed text-slate-600 md:mt-3 md:text-sm">
-                        A Greenfield Housing community in {project.location}.
+                        A premium Greenfield Housing community in{" "}
+                        {project.location}.
                       </p>
                     </div>
 
@@ -334,9 +412,25 @@ export default function Work() {
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>
+
+          {/* Project Dots Indicator */}
+          <div className="mt-6 hidden flex-wrap items-center justify-center gap-2 sm:flex">
+            {filteredProjects.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  currentIndex === i
+                    ? "w-8 bg-emerald-600"
+                    : "w-2 bg-slate-300 hover:bg-slate-400"
+                }`}
+                aria-label={`Go to project ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Stats Section — real, verified company figures */}
+        {/* Stats Section */}
         <div className="mx-auto mt-12 grid w-full max-w-7xl grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:mt-20 md:gap-5 md:rounded-[2.5rem] md:p-8 lg:grid-cols-4 lg:p-10">
           {stats.map((stat) => (
             <div

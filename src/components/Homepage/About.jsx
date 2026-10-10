@@ -12,6 +12,13 @@ import {
   Home,
   Calendar,
   Star,
+  MapPin,
+  Shield,
+  FileCheck,
+  Phone,
+  MessageCircle,
+  Mail,
+  UserCheck,
 } from "lucide-react";
 
 import AboutImage from "../../assests/team/herosection/cubehero3.webp";
@@ -20,13 +27,7 @@ import AboutImage from "../../assests/team/herosection/cubehero3.webp";
 // 3D TILT — wraps any card, tilts it toward the pointer
 // =====================================================
 
-function Tilt({
-  children,
-  className = "",
-  max = 10,
-  scale = 1.02,
-  glare = true,
-}) {
+function Tilt({ children, className = "", max = 10, scale = 1.02, glare = true }) {
   const ref = useRef(null);
   const [style, setStyle] = useState({});
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50, o: 0 });
@@ -36,7 +37,7 @@ function Tilt({
       const el = ref.current;
       if (!el) return;
       const rect = el.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width; // 0 -> 1
+      const px = (e.clientX - rect.left) / rect.width;
       const py = (e.clientY - rect.top) / rect.height;
       const rotateY = (px - 0.5) * max * 2;
       const rotateX = (0.5 - py) * max * 2;
@@ -51,8 +52,7 @@ function Tilt({
 
   const handleLeave = useCallback(() => {
     setStyle({
-      transform:
-        "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)",
+      transform: "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)",
     });
     setGlarePos((g) => ({ ...g, o: 0 }));
   }, []);
@@ -80,8 +80,7 @@ function Tilt({
 }
 
 // =====================================================
-// SCROLL REVEAL — fades + lifts an element into place
-// once it enters the viewport
+// SCROLL REVEAL
 // =====================================================
 
 function useInView(threshold = 0.2) {
@@ -123,7 +122,7 @@ function Reveal({ children, className = "", delay = 0 }) {
 }
 
 // =====================================================
-// ABOUT
+// ABOUT — Greenfield Housing India
 // =====================================================
 
 export default function About() {
@@ -134,22 +133,22 @@ export default function About() {
     {
       icon: Award,
       title: "Integrity",
-      desc: "Staying true to our commitments with honesty and transparency in every dealing.",
+      desc: "Staying true to our commitments with honesty and transparency in every dealing — from booking to handover.",
     },
     {
       icon: Eye,
       title: "Innovation",
-      desc: "Constantly evolving with creative and forward-thinking solutions for modern living.",
+      desc: "Constantly evolving with creative and forward-thinking solutions for modern living and community design.",
     },
     {
       icon: Leaf,
       title: "Sustainability",
-      desc: "Building homes with respect for nature and future generations.",
+      desc: "Building homes with respect for nature and future generations — green spaces, smart design, lasting value.",
     },
     {
       icon: Heart,
       title: "Customer Focus",
-      desc: "Your needs are at the heart of everything we do, from design to delivery.",
+      desc: "Your needs are at the heart of everything we do — from the first site visit to years after possession.",
     },
   ];
 
@@ -157,17 +156,17 @@ export default function About() {
     {
       icon: Building2,
       title: "20+ Projects",
-      desc: "Successfully delivered projects across Coimbatore and Erode.",
+      desc: "Delivered across Coimbatore and Erode since 2012.",
     },
     {
       icon: Ruler,
       title: "1000+ Acres",
-      desc: "Developed prime land into thriving communities and neighborhoods.",
+      desc: "Developed prime land into thriving communities.",
     },
     {
       icon: Home,
       title: "15K+ Families",
-      desc: "Happy families who found their dream home with Greenfield Housing.",
+      desc: "Happy families who found their dream home with us.",
     },
   ];
 
@@ -185,7 +184,7 @@ export default function About() {
     {
       year: "2012",
       title: "First Gated Community",
-      desc: "Launched Natchatra Homes - our first gated community project.",
+      desc: "Launched Natchatra Homes — our first gated community project in Coimbatore.",
     },
     {
       year: "2016",
@@ -195,7 +194,7 @@ export default function About() {
     {
       year: "2017",
       title: "Maple Project",
-      desc: "Started Maple - our first luxurious gated community in Kalapatti.",
+      desc: "Started Maple — our first luxurious gated community in Kalapatti.",
     },
     {
       year: "2020",
@@ -205,12 +204,17 @@ export default function About() {
     {
       year: "2022",
       title: "COVID Relief",
-      desc: "Donated ₹1 crore to CM's fund for the wellbeing of society.",
+      desc: "Donated ₹1 crore to CM's relief fund for the wellbeing of society.",
     },
     {
       year: "2025",
       title: "Lavender Project",
-      desc: "Launched Lavender - our prestigious landmark project in Saravanampatti.",
+      desc: "Launched Lavender — our prestigious landmark project in Saravanampatti.",
+    },
+    {
+      year: "2025",
+      title: "Crystal Gateway",
+      desc: "RERA-registered 805-plot community development in Sulur (TN/11/Layout/0360/2025).",
     },
     {
       year: "2040",
@@ -224,11 +228,7 @@ export default function About() {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
-  // =====================================================
-  // AMBIENT PARALLAX — background blobs drift opposite the
-  // pointer across the whole section for a sense of depth
-  // =====================================================
-
+  // Ambient parallax — background blobs drift opposite pointer
   const handleSectionMove = useCallback((e) => {
     const el = sectionRef.current;
     if (!el) return;
@@ -249,13 +249,11 @@ export default function About() {
       className="relative w-full overflow-hidden bg-slate-50 py-12 md:py-24"
       style={{ perspective: "1800px" }}
     >
-      {/* Background Decor — now parallax-driven */}
+      {/* Background Decor */}
       <div
         className="pointer-events-none absolute left-0 top-0 h-[300px] w-[300px] rounded-full bg-emerald-200/30 blur-[100px] transition-transform duration-300 ease-out md:h-[500px] md:w-[500px]"
         style={{
-          transform: `translate3d(${drift.x * -40}px, ${
-            drift.y * -40
-          }px, 0)`,
+          transform: `translate3d(${drift.x * -40}px, ${drift.y * -40}px, 0)`,
         }}
       />
       <div
@@ -276,30 +274,61 @@ export default function About() {
               </span>
             </div>
 
-            <h1 className="font-['Poppins',sans-serif] max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-5xl">
+            <h1 className="font-['Poppins',sans-serif] max-w-4xl text-4xl font-black leading-tight tracking-tight text-slate-950 md:text-5xl lg:text-6xl">
               We Build Homes,
               <span className="block text-emerald-600">Not Houses.</span>
             </h1>
+
+            <p className="font-['Inter',sans-serif] mt-6 max-w-2xl text-base font-medium leading-relaxed text-slate-600 md:text-lg">
+              For over a decade, Greenfield Housing India has been crafting
+              premium apartments, luxury villas, and RERA-registered
+              residential communities across Coimbatore and Erode — blending
+              modern comfort with nature's embrace.
+            </p>
           </div>
 
           <div className="max-w-xl lg:ml-auto">
-            <p className="font-['Inter',sans-serif] text-base font-medium leading-relaxed text-slate-600 md:text-lg">
-              Greenfield Housing has spent decades crafting homes that blend
-              modern living with trust, innovation, and community spirit. We
-              create sustainable spaces where families thrive.
-            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-2xl border border-emerald-100 bg-white p-4 shadow-sm">
+                <MapPin className="h-4 w-4 text-emerald-600" />
+                <p className="mt-2 font-['Poppins',sans-serif] text-sm font-bold text-slate-950">
+                  Coimbatore & Erode
+                </p>
+                <p className="font-['Inter',sans-serif] text-xs font-medium text-slate-500">
+                  Serving Tamil Nadu
+                </p>
+              </div>
+              <div className="rounded-2xl border border-emerald-100 bg-white p-4 shadow-sm">
+                <Calendar className="h-4 w-4 text-emerald-600" />
+                <p className="mt-2 font-['Poppins',sans-serif] text-sm font-bold text-slate-950">
+                  Since 2012
+                </p>
+                <p className="font-['Inter',sans-serif] text-xs font-medium text-slate-500">
+                  13+ Years of Trust
+                </p>
+              </div>
+            </div>
 
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="font-['Inter',sans-serif] mt-6 inline-flex w-full items-center justify-center gap-3 rounded-xl bg-emerald-700 px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-emerald-800 active:scale-95 sm:w-auto md:mt-8 md:px-8 md:py-4 md:text-lg"
-            >
-              Explore Projects
-              <ArrowRight className="h-5 w-5" />
-            </button>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button
+                onClick={() => scrollToSection("projects")}
+                className="font-['Inter',sans-serif] inline-flex items-center justify-center gap-3 rounded-xl bg-emerald-700 px-6 py-3.5 text-base font-semibold text-white shadow-md transition-all hover:bg-emerald-800 active:scale-95 md:px-8 md:py-4 md:text-lg"
+              >
+                Explore Projects
+                <ArrowRight className="h-5 w-5" />
+              </button>
+              <a
+                href="tel:+917395864774"
+                className="font-['Inter',sans-serif] inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3.5 text-base font-semibold text-slate-800 shadow-sm transition-all hover:border-emerald-300 hover:bg-emerald-50 active:scale-95 md:px-8 md:py-4 md:text-lg"
+              >
+                <Phone className="h-5 w-5 text-emerald-600" />
+                Call Vetri
+              </a>
+            </div>
           </div>
         </Reveal>
 
-        {/* Main About Block — image panel now tilts in 3D on hover */}
+        {/* Main About Block */}
         <Reveal
           delay={100}
           className="mb-6 grid overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm md:mb-10 md:rounded-[2rem] lg:grid-cols-[0.9fr_1.1fr]"
@@ -308,7 +337,7 @@ export default function About() {
             <div className="relative min-h-[250px] overflow-hidden md:min-h-[400px] lg:min-h-[600px]">
               <img
                 src={AboutImage}
-                alt="Greenfield Housing premium homes and communities in Coimbatore"
+                alt="Greenfield Housing India premium homes and communities in Coimbatore"
                 loading="lazy"
                 decoding="async"
                 className="absolute inset-0 h-full w-full object-cover"
@@ -316,17 +345,15 @@ export default function About() {
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
 
               <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 md:bottom-8 md:left-8 md:right-8">
-                {["20+ Projects", "1000+ Acres", "15K+ Families"].map(
-                  (item) => (
-                    <span
-                      key={item}
-                      className="font-['Poppins',sans-serif] rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 shadow-sm backdrop-blur md:px-4 md:py-2 md:text-xs"
-                      style={{ transform: "translateZ(30px)" }}
-                    >
-                      {item}
-                    </span>
-                  )
-                )}
+                {["20+ Projects", "1000+ Acres", "15K+ Families"].map((item) => (
+                  <span
+                    key={item}
+                    className="font-['Poppins',sans-serif] rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 shadow-sm backdrop-blur md:px-4 md:py-2 md:text-xs"
+                    style={{ transform: "translateZ(30px)" }}
+                  >
+                    {item}
+                  </span>
+                ))}
               </div>
             </div>
           </Tilt>
@@ -341,18 +368,21 @@ export default function About() {
             </h2>
 
             <p className="font-['Inter',sans-serif] mt-4 max-w-2xl text-sm font-medium leading-relaxed text-slate-600 md:mt-6 md:text-base lg:text-lg">
-              Greenfield Housing was founded with a mission to create spaces
-              that foster community, ideas, and a balanced future built on
-              trust. We design and build homes that blend modern comfort with
-              nature's embrace, creating neighborhoods where families can
+              Greenfield Housing was founded in 2012 with a mission to create
+              spaces that foster community, ideas, and a balanced future built
+              on trust. We design and build homes that blend modern comfort
+              with nature's embrace, creating neighborhoods where families can
               grow, connect, and create lasting memories.
             </p>
 
             <p className="font-['Inter',sans-serif] mt-4 max-w-2xl text-sm font-medium leading-relaxed text-slate-600 md:mt-6 md:text-base lg:text-lg">
-              From premium apartments in Saravanampatti to luxurious villas in
-              Kalapatti, every Greenfield project is thoughtfully designed
-              with modern amenities, lush green spaces, and smart living
-              features.
+              From premium apartments at <strong>Lavender</strong> in
+              Saravanampatti and gated villas at <strong>Maple</strong> in
+              Kalapatti, to RERA-registered plotted communities like{" "}
+              <strong>Crystal Gateway</strong> in Sulur and{" "}
+              <strong>Silver City</strong> near Karamadai — every project is
+              thoughtfully designed with modern amenities, lush green spaces,
+              and smart living features.
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 md:mt-10 md:gap-5">
@@ -394,9 +424,9 @@ export default function About() {
               </h3>
 
               <p className="font-['Inter',sans-serif] mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 md:mt-6 md:text-lg">
-                It is our mission to sell to our clients properties that are
+                It is our mission to deliver to our clients properties
                 designed by leading quality architects, engineers, and
-                interior designers, giving cost-effective solutions and
+                interior designers — giving cost-effective solutions and
                 innovative designs. Our goal is to be the leading real estate
                 services company in Tamil Nadu, providing a full range of
                 services to meet the diverse and evolving needs of the real
@@ -417,9 +447,9 @@ export default function About() {
 
               <p className="font-['Inter',sans-serif] mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 md:mt-6 md:text-lg">
                 To turn empty spaces into environments of peace and comfort
-                through quality construction and best practices to enhance
+                through quality construction and best practices that enhance
                 the lives of people. We abide by these enduring values that
-                are the foundation of our business and is at the heart of all
+                are the foundation of our business and are at the heart of all
                 that we do each day.
               </p>
 
@@ -448,7 +478,7 @@ export default function About() {
           </Reveal>
         </div>
 
-        {/* Core Values — tilt cards that lift toward the cursor */}
+        {/* Core Values */}
         <Reveal className="mb-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:mb-10 md:rounded-[2rem] md:p-10 lg:p-12">
           <div className="mb-8 grid gap-4 lg:grid-cols-[1fr_1fr] lg:items-end md:mb-12 md:gap-8">
             <div>
@@ -460,7 +490,7 @@ export default function About() {
               </h3>
             </div>
             <p className="font-['Inter',sans-serif] max-w-xl text-base font-medium leading-relaxed text-slate-600 lg:ml-auto md:text-lg">
-              Safety, Collaboration, & Quality Craftsmanship, laid on strong
+              Safety, Collaboration & Quality Craftsmanship — laid on a strong
               foundation of Integrity, Innovation & Excellence.
             </p>
           </div>
@@ -502,9 +532,14 @@ export default function About() {
             <h3 className="font-['Poppins',sans-serif] mt-2 max-w-2xl text-3xl font-black leading-tight text-slate-950 md:mt-4 md:text-4xl lg:text-5xl">
               Decades of Excellence in Real Estate.
             </h3>
+            <p className="font-['Inter',sans-serif] mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 md:text-lg">
+              From our first gated community in Coimbatore to RERA-registered
+              plotted developments in Sulur — here's how Greenfield Housing
+              India has grown over 13+ years.
+            </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {milestones.map((milestone, index) => (
               <Tilt key={index} max={8}>
                 <div className="h-full rounded-xl border border-slate-100 bg-slate-50 p-4 transition-colors hover:border-emerald-200 hover:bg-white hover:shadow-md md:p-5">
@@ -523,6 +558,56 @@ export default function About() {
                 </div>
               </Tilt>
             ))}
+          </div>
+        </Reveal>
+
+        {/* Trust Signals Strip */}
+        <Reveal className="mb-6 rounded-2xl border border-emerald-100 bg-emerald-50/50 p-6 md:mb-10 md:rounded-[2rem] md:p-10">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-white text-emerald-600 shadow-sm">
+                <Shield className="h-6 w-6" />
+              </div>
+              <div>
+                <h4 className="font-['Poppins',sans-serif] text-base font-bold text-slate-950">
+                  RERA Registered
+                </h4>
+                <p className="font-['Inter',sans-serif] mt-1 text-sm text-slate-600">
+                  Projects like Crystal Gateway (TN/11/Layout/0360/2025) and
+                  Fairland (TN/11/Layout/1405/2023) are fully RERA-registered.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-white text-emerald-600 shadow-sm">
+                <Award className="h-6 w-6" />
+              </div>
+              <div>
+                <h4 className="font-['Poppins',sans-serif] text-base font-bold text-slate-950">
+                  CREDAI Awarded
+                </h4>
+                <p className="font-['Inter',sans-serif] mt-1 text-sm text-slate-600">
+                  First developer in Coimbatore to receive the CREDAI award
+                  for environment-friendly quality projects.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-white text-emerald-600 shadow-sm">
+                <FileCheck className="h-6 w-6" />
+              </div>
+              <div>
+                <h4 className="font-['Poppins',sans-serif] text-base font-bold text-slate-950">
+                  DTCP Approved
+                </h4>
+                <p className="font-['Inter',sans-serif] mt-1 text-sm text-slate-600">
+                  Projects like Silver City (DTCP No. 58/2025) and Crown City
+                  are fully DTCP-approved residential layouts.
+                </p>
+              </div>
+            </div>
           </div>
         </Reveal>
 
@@ -590,12 +675,103 @@ export default function About() {
               <div className="mt-6 flex items-center gap-4">
                 <Star className="h-6 w-6 fill-emerald-600 text-emerald-600" />
                 <span className="font-['Inter',sans-serif] text-sm font-semibold text-slate-700">
-                  Trusted by 15,000+ happy families
+                  Trusted by 15,000+ happy families across Coimbatore & Erode
                 </span>
               </div>
             </article>
           </Reveal>
         </div>
+
+        {/* =====================================================
+            SALES CONTACT — Vetri
+        ===================================================== */}
+        <Reveal className="mb-8 md:mb-12">
+          <div className="relative overflow-hidden rounded-2xl border border-emerald-300 bg-gradient-to-br from-emerald-700 via-emerald-800 to-emerald-900 p-6 text-white shadow-2xl md:rounded-[2rem] md:p-10 lg:p-12">
+            {/* Ambient glow */}
+            <div className="pointer-events-none absolute -right-20 -top-20 h-[300px] w-[300px] rounded-full bg-emerald-400/20 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-20 -left-20 h-[300px] w-[300px] rounded-full bg-green-500/20 blur-[100px]" />
+
+            <div className="relative grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <span className="font-['Poppins',sans-serif] inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.2em] text-emerald-100 backdrop-blur">
+                  <UserCheck className="h-3.5 w-3.5" />
+                  Sales Enquiry
+                </span>
+
+                <h3 className="font-['Poppins',sans-serif] mt-5 text-3xl font-black leading-tight md:text-4xl lg:text-5xl">
+                  Talk to Our Sales Team
+                </h3>
+
+                <p className="font-['Inter',sans-serif] mt-4 max-w-2xl text-base font-medium leading-relaxed text-emerald-100 md:text-lg">
+                  Reach out for site visits, project details, current pricing,
+                  and availability — our team is here to help you find the
+                  perfect home across Coimbatore and Erode.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-6">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-emerald-700 shadow-lg">
+                      <UserCheck className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-200">
+                        Sales Manager
+                      </p>
+                      <p className="font-['Poppins',sans-serif] text-xl font-black text-white">
+                        Vetri
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-emerald-700 shadow-lg">
+                      <Phone className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-wider text-emerald-200">
+                        Direct Line
+                      </p>
+                      <a
+                        href="tel:+917395864774"
+                        className="font-['Poppins',sans-serif] text-xl font-black text-white underline-offset-4 hover:underline"
+                      >
+                        +91 73958 64774
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3 lg:flex-col">
+                <a
+                  href="tel:+917395864774"
+                  className="group inline-flex items-center gap-3 rounded-full bg-white px-7 py-4 font-['Inter',sans-serif] text-base font-bold text-emerald-800 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-50"
+                >
+                  <Phone className="h-5 w-5" />
+                  Call Vetri
+                </a>
+
+                <a
+                  href="https://wa.me/917395864774?text=Hi%20Vetri%2C%20I%27m%20interested%20in%20Greenfield%20Housing%20projects."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-7 py-4 font-['Inter',sans-serif] text-base font-bold text-white backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/20"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  WhatsApp
+                </a>
+
+                <a
+                  href="mailto:info@gfhil.com"
+                  className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-7 py-4 font-['Inter',sans-serif] text-base font-bold text-white backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:bg-white/20"
+                >
+                  <Mail className="h-5 w-5" />
+                  Email
+                </a>
+              </div>
+            </div>
+          </div>
+        </Reveal>
 
         {/* Final CTA */}
         <Reveal>
@@ -610,13 +786,28 @@ export default function About() {
                     Ready to find your dream home?
                   </h3>
                   <p className="font-['Inter',sans-serif] mt-4 max-w-xl text-base font-medium leading-relaxed text-slate-600 md:mt-5 md:text-lg">
-                    Explore our premium projects in Coimbatore and Erode. From
-                    luxury apartments to spacious villas, find the perfect
-                    home for your family.
+                    Explore our premium apartments, gated villas, and
+                    RERA/DTCP-approved residential plots across Coimbatore and
+                    Erode. From Lavender in Saravanampatti to Crystal Gateway
+                    in Sulur — find the perfect home for your family.
                   </p>
+
+                  <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 px-5 py-3">
+                    <Phone className="h-5 w-5 text-emerald-600" />
+                    <span className="font-['Inter',sans-serif] text-sm font-semibold text-slate-700">
+                      Speak with{" "}
+                      <strong className="text-slate-950">Vetri</strong> at{" "}
+                      <a
+                        href="tel:+917395864774"
+                        className="text-emerald-700 underline-offset-4 hover:underline"
+                      >
+                        +91 73958 64774
+                      </a>
+                    </span>
+                  </div>
                 </div>
 
-                <div className="lg:text-right">
+                <div className="flex flex-wrap gap-3 lg:flex-col lg:items-end">
                   <button
                     onClick={() => scrollToSection("projects")}
                     className="font-['Inter',sans-serif] inline-flex w-full items-center justify-center gap-3 rounded-xl bg-emerald-700 px-6 py-4 text-base font-semibold text-white shadow-md transition-all hover:bg-emerald-800 active:scale-95 sm:w-auto md:rounded-full md:px-10 md:py-5 md:text-lg"
@@ -625,6 +816,14 @@ export default function About() {
                     View Our Projects
                     <ArrowRight className="h-5 w-5" />
                   </button>
+
+                  <a
+                    href="tel:+917395864774"
+                    className="font-['Inter',sans-serif] inline-flex w-full items-center justify-center gap-3 rounded-xl border border-slate-200 bg-white px-6 py-4 text-base font-semibold text-slate-800 shadow-sm transition-all hover:border-emerald-300 hover:bg-emerald-50 active:scale-95 sm:w-auto md:rounded-full md:px-10 md:py-5 md:text-lg"
+                  >
+                    <Phone className="h-5 w-5 text-emerald-600" />
+                    Call Vetri
+                  </a>
                 </div>
               </div>
             </div>

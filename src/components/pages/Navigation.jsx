@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { ChevronDown, ExternalLink, Menu, X, Home, Building2, Users, MessageSquare, Newspaper, Phone, Mail } from "lucide-react";
+import { ChevronDown, ExternalLink, Menu, X, Home, Building2, Users, Phone, Mail } from "lucide-react";
 import logo from "../../assests/greenfield.webp";
 
 export default function Navigation() {
@@ -25,20 +25,15 @@ export default function Navigation() {
   // Navigation links for Greenfield Housing
   const navLinks = [
     { name: "Home", path: "/", icon: Home },
-    { name: "About Us", path: "/about", icon: Users },
+    { name: "About Us", path: "/aboutus", icon: Users },
     { name: "Community", path: "/community", icon: Building2 },
-    { name: "Testimonials", path: "/testimonials", icon: MessageSquare },
-    { name: "Blog", path: "/blog", icon: Newspaper },
-    { name: "Contact Us", path: "/contact", icon: Phone },
+    { name: "Contact Us", path: "/contactus", icon: Phone },
   ];
 
   // Project dropdown items
   const projectItems = [
-    { name: "All Projects", path: "/projects" },
-    { name: "Ongoing Projects", path: "/projects/ongoing" },
-    { name: "Completed Projects", path: "/projects/completed" },
-    { name: "Ready to Occupy", path: "/projects/ready-to-occupy" },
-    { name: "Gallery", path: "/gallery" },
+    { name: "All Projects", path: "/project" },
+  
   ];
 
   const navLinkClass = ({ isActive }) =>

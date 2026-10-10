@@ -15,32 +15,33 @@ import Image4 from "../../assests/team/herosection/cubehero4.webp";
 
 /*
   Greenfield Housing India
-  Content aligned with the current Greenfield Housing website.
+  Premium real estate developer in Coimbatore & Erode.
+  Content aligned with current Greenfield Housing website & project portfolio.
 */
 
 const slides = [
   {
     id: 1,
-    tag: "PREMIUM HOMES",
+    tag: "SINCE 2012 · COIMBATORE",
     eyebrow: "Crafting Homes, Inspired by Nature",
-    title: "Crafting Homes,\nInspired by Nature",
-    desc: "Blending modern comforts with nature's embrace. These are not just houses — they're spaces to grow, connect, and truly belong.",
+    title: "We Build Homes,\nNot Houses",
+    desc: "Blending modern comforts with nature's embrace. These are not just houses — they are spaces to grow, connect, and truly belong. Trusted by 15,000+ happy families across Coimbatore & Erode.",
     img: Image1,
   },
   {
     id: 2,
-    tag: "GREENFIELD HOUSING",
+    tag: "PREMIUM APARTMENTS",
     eyebrow: "Thoughtfully Designed Homes",
-    title: "Homes That\nGrow With You",
-    desc: "Thoughtfully designed homes that grow with you, every step of the way — bringing comfort, connection and purpose to everyday living.",
+    title: "Luxury Living\nin Prime Locations",
+    desc: "Discover premium 2, 3 & 4 BHK apartments in Saravanampatti, Kalapatti, and Thudiyalur — thoughtfully crafted with smart layouts, sky gardens, wellness zones, and world-class amenities.",
     img: Image2,
   },
   {
     id: 3,
-    tag: "SIGNATURE HOMES",
-    eyebrow: "Experience Our Signature Homes",
-    title: "Comfort Meets\nModern Design",
-    desc: "Discover thoughtfully crafted homes in prime locations, where comfort meets modern design and every moment inspires joy.",
+    tag: "RERA APPROVED PLOTS",
+    eyebrow: "High Return Investment Options",
+    title: "Invest in Land,\nGrow Your Future",
+    desc: "Explore RERA-registered residential plots in Sulur, Kovilpalayam, and S.S. Kulam — with tar roads, underground EB cables, water connections, and premium amenities in gated communities.",
     img: Image3,
   },
   {
@@ -48,7 +49,7 @@ const slides = [
     tag: "COMMUNITY LIVING",
     eyebrow: "Designed for Meaningful Bonds",
     title: "More Than Living.\nA Community.",
-    desc: "Designed for more than just living — creating meaningful bonds and shared experiences through green spaces, wellness, recreation and smart living.",
+    desc: "Lush green spaces, wellness zones, recreational amenities, and smart living features — everything designed for meaningful bonds, shared experiences, and lifelong joy.",
     img: Image4,
   },
 ];
@@ -59,7 +60,7 @@ const FACE_ANGLE = 360 / FACE_COUNT;
 const stats = [
   { value: "20+", label: "Projects across Coimbatore & Erode" },
   { value: "1000+", label: "Acres of developed land" },
-  { value: "10 Lakh+", label: "Square feet of constructed area" },
+  { value: "10 Lakh+", label: "Sq.ft. of constructed area" },
   { value: "15K+", label: "Happy Families" },
 ];
 
@@ -83,7 +84,7 @@ export default function Hero() {
     setCurrent(index);
   }, []);
 
-  // Preload all hero images.
+  // Preload hero images.
   useEffect(() => {
     slides.forEach((slide) => {
       const img = new Image();
@@ -91,7 +92,7 @@ export default function Hero() {
     });
   }, []);
 
-  // Auto rotate.
+  // Auto-rotate carousel.
   useEffect(() => {
     if (isPaused) return;
 
@@ -131,7 +132,7 @@ export default function Hero() {
       onMouseMove={handlePointerMove}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={handlePointerLeave}
-      className="relative mt-16 min-h-[780px] overflow-hidden bg-[#062c1d] text-white md:min-h-[850px] lg:min-h-[920px] xl:min-h-[940px]"
+      className="relative mt-16 min-h-[600px] overflow-hidden bg-[#062c1d] text-white md:min-h-[640px] lg:min-h-[680px] xl:min-h-[700px]"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       {/* =====================================================
@@ -141,21 +142,21 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(52,211,153,0.18),transparent_32%),radial-gradient(circle_at_85%_80%,rgba(34,197,94,0.15),transparent_35%)]" />
 
       <div
-        className="pointer-events-none absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-emerald-500/10 blur-[130px] transition-transform duration-700 ease-out"
+        className="pointer-events-none absolute -left-40 top-0 h-[420px] w-[420px] rounded-full bg-emerald-500/10 blur-[120px] transition-transform duration-700 ease-out"
         style={{
           transform: `translate3d(${tilt.x * -60}px, ${tilt.y * -55}px, 0)`,
         }}
       />
 
       <div
-        className="pointer-events-none absolute -bottom-40 -right-40 h-[650px] w-[650px] rounded-full bg-green-400/10 blur-[150px] transition-transform duration-700 ease-out"
+        className="pointer-events-none absolute -bottom-40 -right-40 h-[520px] w-[520px] rounded-full bg-green-400/10 blur-[140px] transition-transform duration-700 ease-out"
         style={{
           transform: `translate3d(${tilt.x * 90}px, ${tilt.y * 70}px, 0)`,
         }}
       />
 
       <div
-        className="pointer-events-none absolute right-[8%] top-[13%] z-20 h-24 w-24 rounded-full border border-white/10 bg-white/[0.04] shadow-[0_0_100px_rgba(52,211,153,0.18)] backdrop-blur-md transition-transform duration-500 ease-out md:h-36 md:w-36"
+        className="pointer-events-none absolute right-[8%] top-[13%] z-20 h-20 w-20 rounded-full border border-white/10 bg-white/[0.04] shadow-[0_0_100px_rgba(52,211,153,0.18)] backdrop-blur-md transition-transform duration-500 ease-out md:h-28 md:w-28"
         style={{
           transform: `translate3d(${tilt.x * 45}px, ${tilt.y * 35}px, 0)`,
         }}
@@ -200,7 +201,7 @@ export default function Hero() {
               >
                 <img
                   src={slide.img}
-                  alt={slide.title.replace("\n", " ")}
+                  alt={`Greenfield Housing India – ${slide.title.replace("\n", " ")} in Coimbatore`}
                   loading={index === 0 ? "eager" : "lazy"}
                   fetchPriority={index === 0 ? "high" : "auto"}
                   decoding="async"
@@ -228,7 +229,7 @@ export default function Hero() {
       ===================================================== */}
 
       <div
-        className="relative z-30 mx-auto flex min-h-[780px] w-full max-w-[1800px] items-center px-5 py-24 sm:px-8 md:min-h-[850px] md:px-12 lg:min-h-[920px] lg:px-16 xl:px-20 2xl:px-24"
+        className="relative z-30 mx-auto flex min-h-[600px] w-full max-w-[1800px] items-center px-5 py-16 sm:px-8 md:min-h-[640px] md:px-12 lg:min-h-[680px] lg:px-16 xl:min-h-[700px] xl:px-20 2xl:px-24"
         style={{ perspective: "1600px" }}
       >
         <div
@@ -249,9 +250,9 @@ export default function Hero() {
             {/* Eyebrow */}
             <div
               key={`eyebrow-${activeSlide.id}`}
-              className="mb-5 flex animate-[fadeSlideUp_0.5s_ease] items-center gap-3"
+              className="mb-4 flex animate-[fadeSlideUp_0.5s_ease] items-center gap-3"
             >
-              <span className="h-px w-10 bg-emerald-300 md:w-14" />
+              <span className="h-px w-10 bg-emerald-300 md:w-12" />
               <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-200 md:text-xs">
                 {activeSlide.eyebrow}
               </span>
@@ -260,10 +261,10 @@ export default function Hero() {
             {/* Tag */}
             <div
               key={`tag-${activeSlide.id}`}
-              className="mb-7 inline-flex animate-[fadeSlideUp_0.6s_ease] items-center gap-3 rounded-full border border-emerald-200/20 bg-[#062c1d]/45 px-4 py-2.5 shadow-[0_15px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-5 md:py-3"
+              className="mb-5 inline-flex animate-[fadeSlideUp_0.6s_ease] items-center gap-3 rounded-full border border-emerald-200/20 bg-[#062c1d]/45 px-4 py-2 shadow-[0_15px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-5 md:py-2.5"
             >
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-400 text-emerald-950">
-                <Trees className="h-3.5 w-3.5" />
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400 text-emerald-950 md:h-7 md:w-7">
+                <Trees className="h-3 w-3 md:h-3.5 md:w-3.5" />
               </span>
 
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/85">
@@ -274,7 +275,7 @@ export default function Hero() {
             {/* Main Heading */}
             <h1
               key={`title-${activeSlide.id}`}
-              className="animate-[fadeSlideUp_0.7s_ease] whitespace-pre-line font-['Poppins',sans-serif] text-[48px] font-black leading-[0.96] tracking-[-0.em] text-white sm:text-[60px] md:text-[74px] lg:text-[88px] xl:text-[80px] 2xl:text-[70px]"
+              className="animate-[fadeSlideUp_0.7s_ease] whitespace-pre-line font-['Poppins',sans-serif] text-[36px] font-black leading-[0.98] tracking-[-0.03em] text-white sm:text-[46px] md:text-[58px] lg:text-[68px] xl:text-[72px] 2xl:text-[64px]"
               style={{
                 textShadow: "0 18px 60px rgba(0,0,0,0.48)",
               }}
@@ -283,49 +284,49 @@ export default function Hero() {
             </h1>
 
             {/* Accent */}
-            <div className="mt-8 flex items-center gap-3">
-              <div className="h-1 w-20 rounded-full bg-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.5)]" />
+            <div className="mt-6 flex items-center gap-3">
+              <div className="h-1 w-16 rounded-full bg-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.5)] md:w-20" />
               <div className="h-1 w-2 rounded-full bg-white/60" />
             </div>
 
             {/* Description */}
             <p
               key={`desc-${activeSlide.id}`}
-              className="mt-7 max-w-[680px] animate-[fadeSlideUp_0.8s_ease] text-[15px] font-medium leading-7 text-white/72 sm:text-[16px] md:mt-8 md:text-[18px] md:leading-8"
+              className="mt-5 max-w-[660px] animate-[fadeSlideUp_0.8s_ease] text-[14px] font-medium leading-6 text-white/75 sm:text-[15px] md:mt-6 md:text-[16px] md:leading-7"
             >
               {activeSlide.desc}
             </p>
 
             {/* CTA */}
-            <div className="mt-9 flex flex-wrap items-center gap-3 md:mt-10">
+            <div className="mt-7 flex flex-wrap items-center gap-3 md:mt-8">
               <button
                 onClick={() => scrollToSection("contact")}
-                className="group inline-flex h-14 items-center gap-4 rounded-full bg-emerald-400 px-6 font-['Poppins',sans-serif] text-[12px] font-bold text-emerald-950 shadow-[0_18px_45px_rgba(16,185,129,0.28)] transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-300 active:translate-y-0"
+                className="group inline-flex h-12 items-center gap-4 rounded-full bg-emerald-400 px-6 font-['Poppins',sans-serif] text-[12px] font-bold text-emerald-950 shadow-[0_18px_45px_rgba(16,185,129,0.28)] transition-all duration-300 hover:-translate-y-1 hover:bg-emerald-300 active:translate-y-0 md:h-13"
               >
                 <span>Enquire Now</span>
 
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-950 text-white transition-transform duration-300 group-hover:rotate-45">
-                  <ArrowUpRight className="h-4 w-4" />
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-950 text-white transition-transform duration-300 group-hover:rotate-45 md:h-8 md:w-8">
+                  <ArrowUpRight className="h-3.5 w-3.5 md:h-4 md:w-4" />
                 </span>
               </button>
 
               <button
                 onClick={() => scrollToSection("projects")}
-                className="inline-flex h-14 items-center gap-3 rounded-full border border-white/20 bg-white/[0.07] px-6 font-['Poppins',sans-serif] text-[12px] font-bold text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/50 hover:bg-emerald-900/30"
+                className="inline-flex h-12 items-center gap-3 rounded-full border border-white/20 bg-white/[0.07] px-6 font-['Poppins',sans-serif] text-[12px] font-bold text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300/50 hover:bg-emerald-900/30 md:h-13"
               >
                 View Projects
                 <ArrowUpRight className="h-4 w-4" />
               </button>
             </div>
 
-            {/* Real website stats */}
-            <div className="mt-8 grid max-w-[760px] grid-cols-2 gap-2 sm:grid-cols-4">
+            {/* Stats */}
+            <div className="mt-6 grid max-w-[720px] grid-cols-2 gap-2 sm:grid-cols-4">
               {stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className="rounded-2xl border border-white/10 bg-black/15 px-3 py-3 backdrop-blur-md"
+                  className="rounded-2xl border border-white/10 bg-black/15 px-3 py-2.5 backdrop-blur-md"
                 >
-                  <p className="font-['Poppins',sans-serif] text-lg font-black text-emerald-300 md:text-xl">
+                  <p className="font-['Poppins',sans-serif] text-base font-black text-emerald-300 md:text-lg">
                     {stat.value}
                   </p>
                   <p className="mt-1 text-[8px] font-semibold uppercase leading-tight tracking-[0.08em] text-white/45 md:text-[9px]">
@@ -342,7 +343,7 @@ export default function Hero() {
           CONTROLS
       ===================================================== */}
 
-      <div className="absolute bottom-7 left-5 right-5 z-50 sm:left-8 sm:right-8 lg:bottom-9 lg:left-10 lg:right-10">
+      <div className="absolute bottom-5 left-5 right-5 z-50 sm:left-8 sm:right-8 lg:bottom-7 lg:left-10 lg:right-10">
         <div className="mx-auto flex max-w-[560px] items-center justify-between rounded-full border border-white/10 bg-[#021b11]/50 px-3 py-2.5 shadow-2xl backdrop-blur-2xl lg:mx-0 lg:ml-auto">
           <button
             onClick={prevSlide}
@@ -384,7 +385,7 @@ export default function Hero() {
 
       {/* Desktop side indicator */}
       <div className="absolute right-8 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 xl:flex">
-        <div className="h-16 w-px bg-gradient-to-b from-transparent via-emerald-300/50 to-transparent" />
+        <div className="h-14 w-px bg-gradient-to-b from-transparent via-emerald-300/50 to-transparent" />
 
         <div className="flex flex-col items-center gap-2 text-emerald-200/60">
           <MapPin className="h-4 w-4" />
@@ -397,11 +398,11 @@ export default function Hero() {
           </span>
         </div>
 
-        <div className="h-16 w-px bg-gradient-to-b from-emerald-300/50 via-transparent to-transparent" />
+        <div className="h-14 w-px bg-gradient-to-b from-emerald-300/50 via-transparent to-transparent" />
       </div>
 
       {/* Bottom left slide number */}
-      <div className="absolute bottom-10 left-10 z-40 hidden items-center gap-4 xl:flex">
+      <div className="absolute bottom-8 left-10 z-40 hidden items-center gap-4 xl:flex">
         <span className="font-['Poppins',sans-serif] text-[10px] font-bold tracking-[0.2em] text-white/40">
           {String(current + 1).padStart(2, "0")} /{" "}
           {String(FACE_COUNT).padStart(2, "0")}
