@@ -11,6 +11,7 @@ import FAQ from '../Homepage/FAQ';
 import Testimonials from '../Homepage/Testimonials';
 import Contact from '../Homepage/Contact';
 import Infinityscroll from '../Homepage/infinityscrolling';
+import Videos from '../Homepage/videosection';
 
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <Hero />
       <Infinityscroll />
       <Services />
+      <Videos  />  
       {/* <Gallery /> */}
       <About />
       <Work />
