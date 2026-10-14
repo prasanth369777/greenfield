@@ -1,16 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Trees,
   HeartPulse,
   Volleyball,
   Users,
-  Wifi,
-  ShoppingBag,
+  Shield,
+  Droplets,
   ArrowRight,
   ArrowUpRight,
   MapPin,
   Star,
   Building2,
+  Phone,
 } from "lucide-react";
 
 // =====================================================
@@ -40,12 +42,12 @@ function useInView(threshold = 0.15) {
   return [ref, inView];
 }
 
-function Reveal({ children, className = "", delay = 0, y = 40 }) {
+function Reveal({ children, className = "", delay = 0, y = 30 }) {
   const [ref, inView] = useInView();
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-out ${className}`}
+      className={`transition-all duration-700 ease-out ${className}`}
       style={{
         transitionDelay: `${delay}ms`,
         transform: inView ? "translateY(0)" : `translateY(${y}px)`,
@@ -58,59 +60,65 @@ function Reveal({ children, className = "", delay = 0, y = 40 }) {
 }
 
 // =====================================================
-// DATA
+// DATA (Verified from Source Documents)
 // =====================================================
 
 const communityFeatures = [
   {
     icon: Trees,
-    title: "Lush Green Spaces",
-    desc: "Serene gardens, landscaped parks, and tree-lined avenues that bring nature to your doorstep.",
-    stat: "40%",
-    statLabel: "Open Green Area",
+    title: "Green Spaces",
+    desc: "Landscaped gardens and roadside greenery[cite: 8, 10].",
+    stat: "Lush",
+    statLabel: "Environments",
+    color: "emerald",
   },
   {
     icon: HeartPulse,
-    title: "Wellness Zones",
-    desc: "Fitness centers, yoga decks, walking trails, and meditation corners for a healthier lifestyle.",
-    stat: "24/7",
-    statLabel: "Wellness Access",
+    title: "Fitness Zones",
+    desc: "Outdoor gyms and 400m running tracks[cite: 8].",
+    stat: "Active",
+    statLabel: "Lifestyle",
+    color: "blue",
   },
   {
     icon: Volleyball,
-    title: "Recreational Amenities",
-    desc: "Clubhouses, swimming pools, sports courts, and indoor games for every age group.",
-    stat: "15+",
+    title: "Recreation",
+    desc: "Clubhouses, mini theatres, and turf courts[cite: 8, 11].",
+    stat: "Premium",
     statLabel: "Amenities",
+    color: "purple",
   },
   {
     icon: Users,
-    title: "Community Gatherings",
-    desc: "Spaces designed for celebrations, festivals, events, and building lasting bonds with neighbors.",
-    stat: "50+",
-    statLabel: "Events / Year",
+    title: "Gatherings",
+    desc: "Community halls and children's play areas[cite: 4, 8].",
+    stat: "Social",
+    statLabel: "Spaces",
+    color: "orange",
   },
   {
-    icon: Wifi,
-    title: "Smart Living Features",
-    desc: "Modern technology integrated for convenience, security, and efficient everyday living.",
-    stat: "Smart",
-    statLabel: "Enabled Homes",
+    icon: Droplets,
+    title: "Infrastructure",
+    desc: "Individual water pipelines, underground EB, and drainage[cite: 6, 8, 10].",
+    stat: "Ready",
+    statLabel: "To Build",
+    color: "indigo",
   },
   {
-    icon: ShoppingBag,
-    title: "Proximity to Essentials",
-    desc: "Located near schools, hospitals, IT parks, shopping malls, and entertainment hubs.",
-    stat: "5 km",
-    statLabel: "Avg. Distance",
+    icon: Shield,
+    title: "Secure Layouts",
+    desc: "24/7 security, CCTV, and gated compound walls[cite: 4, 6, 8, 10].",
+    stat: "24/7",
+    statLabel: "Protection",
+    color: "rose",
   },
 ];
 
 const stats = [
-  { value: "15K+", label: "Happy Families" },
-  { value: "20+", label: "Communities" },
-  { value: "1000+", label: "Acres Developed" },
-  { value: "13+", label: "Years of Trust" },
+  { value: "805", label: "Plots in Gateway[cite: 8]" },
+  { value: "100%", label: "Approved Layouts[cite: 6, 8, 10]" },
+  { value: "3 Ac", label: "Cricket Turf[cite: 8]" },
+  { value: "24/7", label: "Security[cite: 4, 6, 8, 11]" },
 ];
 
 // =====================================================
@@ -139,7 +147,7 @@ export default function Community() {
       ref={sectionRef}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className="relative w-full overflow-hidden bg-[#0a1f14] py-24 text-white md:py-32"
+      className="relative w-full overflow-hidden bg-[#0a1f14] py-16 text-white md:py-24"
     >
       {/* =====================================================
           BACKGROUND LAYERS
@@ -151,32 +159,32 @@ export default function Community() {
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px)",
-          backgroundSize: "70px 70px",
+          backgroundSize: "60px 60px",
         }}
       />
 
       {/* Parallax orbs */}
       <div
-        className="pointer-events-none absolute -left-40 top-10 h-[500px] w-[500px] rounded-full bg-emerald-500/15 blur-[130px]"
-        style={{ transform: `translate3d(${drift.x * -50}px, ${drift.y * -50}px, 0)` }}
+        className="pointer-events-none absolute -left-20 top-10 h-[300px] w-[300px] rounded-full bg-emerald-500/15 blur-[100px] md:h-[400px] md:w-[400px]"
+        style={{ transform: `translate3d(${drift.x * -30}px, ${drift.y * -30}px, 0)` }}
       />
       <div
-        className="pointer-events-none absolute -right-40 bottom-0 h-[600px] w-[600px] rounded-full bg-amber-500/10 blur-[150px]"
-        style={{ transform: `translate3d(${drift.x * 60}px, ${drift.y * 60}px, 0)` }}
+        className="pointer-events-none absolute -right-20 bottom-0 h-[350px] w-[350px] rounded-full bg-amber-500/10 blur-[120px] md:h-[500px] md:w-[500px]"
+        style={{ transform: `translate3d(${drift.x * 40}px, ${drift.y * 40}px, 0)` }}
       />
 
       {/* Decorative rings */}
       <div
-        className="pointer-events-none absolute right-[6%] top-[10%] hidden h-40 w-40 rounded-full border border-white/[0.08] lg:block"
-        style={{ transform: `translate3d(${drift.x * 40}px, ${drift.y * 40}px, 0)` }}
+        className="pointer-events-none absolute right-[6%] top-[10%] hidden h-32 w-32 rounded-full border border-white/[0.08] lg:block"
+        style={{ transform: `translate3d(${drift.x * 20}px, ${drift.y * 20}px, 0)` }}
       >
         <div className="absolute inset-4 rounded-full border border-emerald-400/20" />
-        <div className="absolute inset-10 rounded-full bg-emerald-400/5 blur-md" />
+        <div className="absolute inset-8 rounded-full bg-emerald-400/5 blur-md" />
       </div>
 
       <div
-        className="pointer-events-none absolute left-[4%] bottom-[12%] hidden h-24 w-24 rounded-full border border-white/[0.08] lg:block"
-        style={{ transform: `translate3d(${drift.x * -30}px, ${drift.y * -30}px, 0)` }}
+        className="pointer-events-none absolute left-[4%] bottom-[12%] hidden h-20 w-20 rounded-full border border-white/[0.08] lg:block"
+        style={{ transform: `translate3d(${drift.x * -20}px, ${drift.y * -20}px, 0)` }}
       >
         <div className="absolute inset-3 rounded-full bg-amber-400/[0.06] blur-sm" />
       </div>
@@ -185,89 +193,70 @@ export default function Community() {
           CONTENT
       ===================================================== */}
 
-      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-6 sm:px-10 lg:px-16 xl:px-20">
+      <div className="relative z-10 mx-auto w-full max-w-[1500px] px-5 sm:px-8 lg:px-12 xl:px-16">
         {/* ---------------------------------------------------
             HEADER
         --------------------------------------------------- */}
 
-        <div className="mb-16 grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-end md:mb-20">
+        <div className="mb-12 grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end md:mb-16">
           <Reveal>
             <div>
-              <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-5 py-2.5 backdrop-blur">
-                <span className="relative flex h-2 w-2">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/5 px-4 py-2 backdrop-blur md:mb-8">
+                <span className="relative flex h-1.5 w-1.5 md:h-2 md:w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                  <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 md:h-2 md:w-2" />
                 </span>
-                <span className="font-['Poppins',sans-serif] text-[10px] font-black uppercase tracking-[0.22em] text-emerald-100">
+                <span className="font-['Poppins',sans-serif] text-[9px] font-black uppercase tracking-[0.2em] text-emerald-100 md:text-[10px]">
                   Community Living
                 </span>
               </div>
 
-              <h2 className="font-['Poppins',sans-serif] text-[40px] font-black leading-[0.98] tracking-[-0.03em] sm:text-[52px] md:text-[64px] lg:text-[76px]">
-                Designed for
+              <h2 className="font-['Poppins',sans-serif] text-3xl font-black leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+                Equipped For
                 <br />
                 <span className="bg-gradient-to-r from-emerald-300 via-emerald-200 to-amber-200 bg-clip-text text-transparent">
-                  More Than
-                </span>{" "}
-                Living.
+                  Modern Life.
+                </span>
               </h2>
 
-              <p className="mt-8 max-w-2xl font-['Inter',sans-serif] text-base font-medium leading-relaxed text-emerald-50/70 md:text-lg">
-                Create meaningful bonds and shared experiences in spaces
-                designed for connection, wellness, and joy. Every Greenfield
-                community is built with lush green spaces, wellness zones,
-                recreational amenities, and smart living features.
+              <p className="mt-4 max-w-xl font-['Inter',sans-serif] text-xs font-medium leading-relaxed text-emerald-50/70 md:mt-6 md:text-sm">
+                Every Greenfield community is built with lush green spaces, wellness zones, recreational amenities, and secure infrastructure. We turn empty lands into vibrant neighborhoods[cite: 8, 10, 11].
               </p>
             </div>
           </Reveal>
 
           {/* Right side — Highlight card */}
-          <Reveal delay={150}>
+          <Reveal delay={100}>
             <div className="relative">
-              <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-8 backdrop-blur md:p-10">
-                <div className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-emerald-300" />
-                  <span className="font-['Poppins',sans-serif] text-[10px] font-black uppercase tracking-[0.18em] text-emerald-200/70">
+              <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-6 backdrop-blur md:rounded-[2rem] md:p-8">
+                <div className="flex items-center gap-2 md:gap-3">
+                  <MapPin className="h-4 w-4 text-emerald-300 md:h-5 md:w-5" />
+                  <span className="font-['Poppins',sans-serif] text-[9px] font-black uppercase tracking-[0.15em] text-emerald-200/70 md:text-[10px]">
                     Featured Community
                   </span>
                 </div>
 
-                <h3 className="mt-5 font-['Poppins',sans-serif] text-2xl font-black leading-tight tracking-tight md:text-3xl">
-                  Lavender
-                  <span className="block text-lg font-light italic text-emerald-200/80 md:text-xl">
-                    Saravanampatti, Coimbatore
+                <h3 className="mt-3 font-['Poppins',sans-serif] text-xl font-black leading-tight tracking-tight md:mt-4 md:text-2xl">
+                  Crystal Gateway
+                  <span className="block text-sm font-light italic text-emerald-200/80 md:mt-1 md:text-base">
+                    Sulur, Coimbatore
                   </span>
                 </h3>
 
-                <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-6">
-                  <Star className="h-5 w-5 fill-amber-300 text-amber-300" />
-                  <span className="font-['Inter',sans-serif] text-xs font-bold uppercase tracking-wider text-white/80">
-                    Our prestigious landmark project
+                <div className="mt-4 flex items-center gap-2 border-t border-white/10 pt-4 md:mt-5 md:pt-5">
+                  <Star className="h-4 w-4 fill-amber-300 text-amber-300 md:h-5 md:w-5" />
+                  <span className="font-['Inter',sans-serif] text-[10px] font-bold uppercase tracking-wider text-white/80 md:text-xs">
+                    805-plot RERA Community[cite: 8]
                   </span>
                 </div>
 
-                <a
-                  href="/lavender-campaign"
-                  className="group mt-6 inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.18em] text-emerald-300 transition-colors hover:text-emerald-200"
+                <Link
+                  to="/project"
+                  className="group mt-4 inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.15em] text-emerald-300 transition-colors hover:text-emerald-200 md:mt-5 md:text-[10px]"
                 >
-                  Discover Lavender
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-              </div>
-
-              {/* Floating badge */}
-              <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-emerald-400/20 bg-emerald-950/80 px-5 py-3.5 backdrop-blur md:block">
-                <div className="flex items-center gap-3">
-                 
-                  <div>
-                    <p className="font-['Poppins',sans-serif] text-xs font-black text-white">
-                      Since 2012
-                    </p>
-                    <p className="font-['Inter',sans-serif] text-[10px] font-medium text-emerald-200/70">
-                      13+ Years of Trust
-                    </p>
-                  </div>
-                </div>
+                  Discover Gateway
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 md:h-4 md:w-4" />
+                </Link>
               </div>
             </div>
           </Reveal>
@@ -277,44 +266,44 @@ export default function Community() {
             FEATURE GRID
         --------------------------------------------------- */}
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 md:gap-5">
           {communityFeatures.map((feature, idx) => {
             const Icon = feature.icon;
             return (
-              <Reveal key={feature.title} delay={idx * 80}>
-                <article className="group relative h-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-7 backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-emerald-400/30 hover:bg-white/[0.06] hover:shadow-[0_25px_60px_-20px_rgba(16,185,129,0.4)] md:p-8">
+              <Reveal key={feature.title} delay={idx * 60}>
+                <article className="group relative h-full overflow-hidden rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-5 backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/[0.06] hover:shadow-lg md:rounded-[1.5rem] md:p-6">
                   {/* Corner glow on hover */}
-                  <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-emerald-400/0 blur-[60px] transition-all duration-500 group-hover:bg-emerald-400/20" />
+                  <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-emerald-400/0 blur-[40px] transition-all duration-500 group-hover:bg-emerald-400/20 md:-right-12 md:-top-12 md:h-32 md:w-32 md:blur-[50px]" />
 
                   <div className="relative">
                     {/* Icon */}
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-400/20 transition-all duration-500 group-hover:bg-emerald-400 group-hover:text-emerald-950 group-hover:ring-emerald-400">
-                      <Icon className="h-6 w-6" strokeWidth={2.2} />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-400/20 transition-all duration-300 group-hover:bg-emerald-400 group-hover:text-emerald-950 group-hover:ring-emerald-400 md:h-12 md:w-12">
+                      <Icon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={2} />
                     </div>
 
                     {/* Title */}
-                    <h3 className="mt-7 font-['Poppins',sans-serif] text-xl font-black leading-tight tracking-tight text-white md:text-2xl">
+                    <h3 className="mt-4 font-['Poppins',sans-serif] text-lg font-black leading-tight tracking-tight text-white md:mt-5 md:text-xl">
                       {feature.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="mt-4 font-['Inter',sans-serif] text-sm font-medium leading-relaxed text-white/60 md:text-[15px]">
+                    <p className="mt-2 font-['Inter',sans-serif] text-xs font-medium leading-relaxed text-white/60 md:mt-3 md:text-sm">
                       {feature.desc}
                     </p>
 
                     {/* Stat row */}
-                    <div className="mt-7 flex items-end justify-between border-t border-white/10 pt-5">
+                    <div className="mt-5 flex items-end justify-between border-t border-white/10 pt-4 md:mt-6 md:pt-5">
                       <div>
-                        <p className="font-['Poppins',sans-serif] text-3xl font-black leading-none tracking-tight text-emerald-300 md:text-4xl">
+                        <p className="font-['Poppins',sans-serif] text-2xl font-black leading-none tracking-tight text-emerald-300 md:text-3xl">
                           {feature.stat}
                         </p>
-                        <p className="mt-1.5 font-['Poppins',sans-serif] text-[9px] font-black uppercase tracking-[0.18em] text-white/40">
+                        <p className="mt-1 font-['Poppins',sans-serif] text-[8px] font-black uppercase tracking-[0.15em] text-white/40 md:text-[9px]">
                           {feature.statLabel}
                         </p>
                       </div>
 
-                      <div className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-white/40 transition-all duration-500 group-hover:border-emerald-400/40 group-hover:bg-emerald-400/10 group-hover:text-emerald-300">
-                        <ArrowUpRight className="h-4 w-4" />
+                      <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-white/40 transition-all duration-300 group-hover:border-emerald-400/40 group-hover:bg-emerald-400/10 group-hover:text-emerald-300 md:h-8 md:w-8">
+                        <ArrowUpRight className="h-3.5 w-3.5 md:h-4 md:w-4" />
                       </div>
                     </div>
                   </div>
@@ -328,23 +317,23 @@ export default function Community() {
             STATS STRIP
         --------------------------------------------------- */}
 
-        <Reveal delay={200}>
-          <div className="mt-16 grid grid-cols-2 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur md:mt-20 md:grid-cols-4 md:rounded-[2rem]">
+        <Reveal delay={150}>
+          <div className="mt-10 grid grid-cols-2 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur md:mt-16 md:grid-cols-4 md:rounded-[2rem]">
             {stats.map((stat, idx) => (
               <div
                 key={stat.label}
-                className={`relative p-6 transition-all duration-300 hover:bg-emerald-400/[0.06] md:p-8 ${
+                className={`relative p-5 transition-all duration-300 hover:bg-emerald-400/[0.06] md:p-6 lg:p-8 ${
                   idx !== stats.length - 1 ? "border-r border-white/10" : ""
                 } ${idx < 2 ? "border-b border-white/10 md:border-b-0" : ""}`}
               >
-                <p className="font-['Poppins',sans-serif] text-3xl font-black leading-none tracking-tight text-emerald-300 md:text-4xl lg:text-5xl">
+                <p className="font-['Poppins',sans-serif] text-2xl font-black leading-none tracking-tight text-emerald-300 md:text-3xl lg:text-4xl">
                   {stat.value}
                 </p>
-                <p className="mt-3 font-['Poppins',sans-serif] text-[10px] font-black uppercase tracking-[0.18em] text-white/50 md:text-[11px]">
+                <p className="mt-2 font-['Poppins',sans-serif] text-[8px] font-black uppercase tracking-[0.15em] text-white/50 md:mt-3 md:text-[9px]">
                   {stat.label}
                 </p>
 
-                <div className="absolute right-3 top-3 h-1.5 w-1.5 rounded-full bg-emerald-400/60" />
+                <div className="absolute right-3 top-3 h-1 w-1 rounded-full bg-emerald-400/60 md:h-1.5 md:w-1.5" />
               </div>
             ))}
           </div>
@@ -354,17 +343,17 @@ export default function Community() {
             CTA STRIP
         --------------------------------------------------- */}
 
-        <Reveal delay={250}>
-          <div className="mt-16 flex flex-col items-start justify-between gap-6 rounded-[2rem] border border-emerald-400/20 bg-gradient-to-br from-emerald-500/10 to-emerald-400/[0.02] p-8 backdrop-blur md:mt-20 md:flex-row md:items-center md:rounded-[2.5rem] md:p-12">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-3">
-                <Building2 className="h-5 w-5 text-emerald-300" />
-                <span className="font-['Poppins',sans-serif] text-[10px] font-black uppercase tracking-[0.2em] text-emerald-200/80">
-                  Experience Greenfield Living
+        <Reveal delay={200}>
+          <div className="mt-10 flex flex-col items-start justify-between gap-6 rounded-[1.5rem] border border-emerald-400/20 bg-gradient-to-br from-emerald-500/10 to-emerald-400/[0.02] p-6 backdrop-blur md:mt-16 md:flex-row md:items-center md:rounded-[2rem] md:p-10 lg:p-12">
+            <div className="max-w-xl">
+              <div className="flex items-center gap-2 md:gap-3">
+                <Building2 className="h-4 w-4 text-emerald-300 md:h-5 md:w-5" />
+                <span className="font-['Poppins',sans-serif] text-[9px] font-black uppercase tracking-[0.18em] text-emerald-200/80 md:text-[10px]">
+                  Experience Greenfield
                 </span>
               </div>
 
-              <h3 className="mt-4 font-['Poppins',sans-serif] text-3xl font-black leading-[1.05] tracking-tight text-white md:text-4xl lg:text-5xl">
+              <h3 className="mt-3 font-['Poppins',sans-serif] text-2xl font-black leading-tight tracking-tight text-white md:mt-4 md:text-3xl lg:text-4xl">
                 Ready to be a part of
                 <br />
                 <span className="italic font-light text-emerald-200">
@@ -372,27 +361,27 @@ export default function Community() {
                 </span>
               </h3>
 
-              <p className="mt-5 font-['Inter',sans-serif] text-sm font-medium leading-relaxed text-white/60 md:text-base">
-                Explore our ongoing, completed, and ready-to-occupy projects
-                across Coimbatore and Erode — and find the community where
-                your family will thrive.
+              <p className="mt-3 font-['Inter',sans-serif] text-xs font-medium leading-relaxed text-white/60 md:mt-4 md:text-sm">
+                Explore our ongoing, completed, and ready-to-build projects
+                across Coimbatore — and find the community where your family will thrive[cite: 3, 6, 8, 10, 11].
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="/allprojects"
-                className="group inline-flex items-center gap-3 rounded-full bg-emerald-400 px-7 py-4 font-['Poppins',sans-serif] text-sm font-bold text-emerald-950 shadow-xl shadow-emerald-500/20 transition-all hover:-translate-y-1 hover:bg-emerald-300"
+            <div className="flex flex-wrap gap-2.5 md:gap-3">
+              <Link
+                to="/project"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 font-['Poppins',sans-serif] text-xs font-bold text-emerald-950 shadow-md shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:bg-emerald-300 md:gap-3 md:px-6 md:py-3.5 md:text-sm"
               >
-                Explore Communities
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
+                Explore Layouts
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1 md:h-4 md:w-4" />
+              </Link>
 
               <a
                 href="tel:+917395864774"
-                className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-7 py-4 font-['Poppins',sans-serif] text-sm font-bold text-white backdrop-blur transition-all hover:-translate-y-1 hover:bg-white/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 font-['Poppins',sans-serif] text-xs font-bold text-white backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white/10 md:gap-3 md:px-6 md:py-3.5 md:text-sm"
               >
-                Call Vetri
+                <Phone className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                Call Sales
               </a>
             </div>
           </div>

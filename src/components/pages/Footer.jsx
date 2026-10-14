@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Instagram,
   Facebook,
@@ -12,19 +13,17 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { label: "Projects", href: "https://www.greenfieldhousingindia.com/allprojects" },
-    { label: "Community", href: "https://www.greenfieldhousingindia.com/community" },
-    { label: "About us", href: "https://www.greenfieldhousingindia.com/aboutus" },
-    { label: "Contact us", href: "https://www.greenfieldhousingindia.com/contactus" },
-    { label: "Terms & Conditions", href: "https://www.greenfieldhousingindia.com/terms-conditions" },
-    { label: "Privacy Policy", href: "https://www.greenfieldhousingindia.com/privacypolicy" },
-    { label: "Disclaimer", href: "https://www.greenfieldhousingindia.com/disclaimer" },
+    { label: "Home", href: "/" },
+    { label: "Projects", href: "/project" },
+    { label: "Community", href: "/community" },
+    { label: "About us", href: "/aboutus" },
+    { label: "Contact us", href: "/contactus" },
   ];
 
   const projectLinks = [
-    { label: "Ongoing Projects", href: "https://www.greenfieldhousingindia.com/ongoing-projects" },
-    { label: "Completed Projects", href: "https://www.greenfieldhousingindia.com/completed-project" },
-    { label: "Ready to Occupy", href: "https://www.greenfieldhousingindia.com/ready-to-occupy" },
+    { label: "Ongoing Projects", href: "/project" },
+    { label: "Completed Projects", href: "/project" },
+    { label: "Ready to Occupy", href: "/project" },
   ];
 
   const socials = [
@@ -33,13 +32,11 @@ export default function Footer() {
       label: "Instagram",
       href: "https://www.instagram.com/greenfield_housing/?hl=en",
     },
-   
     {
       icon: Facebook,
       label: "Facebook",
       href: "https://www.facebook.com/profile.php?id=61564948162389",
     },
- 
   ];
 
   return (
@@ -53,17 +50,19 @@ export default function Footer() {
 
           <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <img
-                src={Logo}
-                alt="Greenfield Housing India"
-                className="h-10 w-auto object-contain brightness-0 invert md:h-14"
-              />
+              <Link to="/">
+                <img
+                  src={Logo}
+                  alt="Greenfield Housing India"
+                  className="h-10 w-auto object-contain brightness-0 invert md:h-14"
+                />
+              </Link>
 
               <div className="mt-10 md:mt-14">
                 <p className="mb-3 font-['Poppins',sans-serif] text-[10px] font-bold uppercase tracking-[0.25em] text-emerald-300 md:text-xs">
                   Greenfield Housing India
                 </p>
-                <h2 className="font-['Poppins',sans-serif] text-4xl font-black leading-[0.98] tracking-[-0.04em] md:text-5xl lg:text-6xl">
+                <h2 className="font-['Poppins',sans-serif] text-4xl font-black leading-[0.98] tracking-[-0.04em] md:text-4xl lg:text-5xl">
                   We turn empty space into
                   <span className="mt-2 block text-emerald-300">
                     Aesthetic Living Spaces.
@@ -128,14 +127,14 @@ export default function Footer() {
 
               <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                 {quickLinks.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.href}
+                    to={item.href}
                     className="group flex items-center gap-2 font-['Inter',sans-serif] text-sm font-semibold text-slate-600 transition-all duration-200 hover:translate-x-1 hover:text-emerald-700 md:text-[15px]"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 opacity-40 transition-all group-hover:opacity-100" />
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -151,16 +150,16 @@ export default function Footer() {
 
               <div className="space-y-4">
                 {projectLinks.map((item) => (
-                  <a
+                  <Link
                     key={item.label}
-                    href={item.href}
+                    to={item.href}
                     className="group flex items-center gap-3 font-['Inter',sans-serif] text-sm font-semibold text-slate-600 transition-all duration-200 hover:translate-x-1 hover:text-emerald-700 md:text-[15px]"
                   >
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
                       →
                     </span>
                     {item.label}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -208,24 +207,24 @@ export default function Footer() {
             </p>
 
             <div className="flex flex-wrap gap-5 text-xs font-semibold text-slate-400 md:text-sm">
-              <a
-                href="https://www.greenfieldhousingindia.com/terms-conditions"
+              <Link
+                to="/terms-conditions"
                 className="transition-colors hover:text-emerald-600"
               >
                 Terms & Conditions
-              </a>
-              <a
-                href="https://www.greenfieldhousingindia.com/privacypolicy"
+              </Link>
+              <Link
+                to="/privacypolicy"
                 className="transition-colors hover:text-emerald-600"
               >
                 Privacy Policy
-              </a>
-              <a
-                href="https://www.greenfieldhousingindia.com/disclaimer"
+              </Link>
+              <Link
+                to="/disclaimer"
                 className="transition-colors hover:text-emerald-600"
               >
                 Disclaimer
-              </a>
+              </Link>
             </div>
           </div>
         </div>
